@@ -38,16 +38,17 @@ function mvc_autoload($class)
 
 /**
  * Calls controller function or method.
- * 
- * Controller file can contain a class with methods which will map to $action, 
+ *
+ * Controller file can contain a class with methods which will map to $action,
  * or plain functions which should be named like $controller_$action
- * 
+ *
  * @param string $controller Controller filename
  * @param string $action Function or method to call.
  * @return bool TRUE on success, FALSE on failure
  */
 function mvc_dispatch($controller, $action = null)
 {
+    global $cfg, $env;
 	$method = strtolower($_SERVER['REQUEST_METHOD']);
 	$action = $action ? $method.'_'.$action : $method.'_index';
 
